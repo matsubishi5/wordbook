@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   root 'homes#top'
-  get 'users/ranking', to: 'users#ranking'
+
+  resources :sessions, only: %i(new create destroy)
+
+  resources :users, only: %i(new create) do
+    collection do
+      get :ranking
+    end
+  end
 
   resources :questions, except: %i(show) do
     collection do

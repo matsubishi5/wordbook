@@ -1,0 +1,35 @@
+.row
+  .col-xs-2
+  .col-xs-8
+
+    .page-header
+      h1
+        | 第〜問 (全10問)
+
+
+    = form_with url: learning_questions_path, method: :get, local: true do |f|
+      - @question.each do |q|
+        h3
+          | 問題 :
+          = q.description
+        br
+
+        h3
+          | 【類似語】
+
+        p
+          = radio_button_tag :answer, '正解', true
+          = q.question
+
+        - q.question_similars.each do |qs|
+          p
+            = radio_button_tag :answer, '不正解'
+            = qs.similar_word
+            br
+
+        = f.submit '回答する'
+
+  .col-xs-2
+
+= session[:correct]
+= session[:incorrect]

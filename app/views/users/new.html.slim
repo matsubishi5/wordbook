@@ -1,0 +1,37 @@
+.row
+  .col-xs-3
+
+  .col-xs-6
+    .page-header
+      h3
+        | 新規ユーザー登録画面
+
+    = form_with model: @user, url: users_path, local: true do |f|
+
+      - if flash.present?
+        .alert.alert-danger.alert-dismissible.fade.in role='alert'
+          button.close type='button' data-dismiss='alert'
+            span aria-hidden='true'
+              | ×
+          - flash.each do |name, msg|
+            = content_tag :div, msg, :id => 'flash_#{ name }' if msg.is_a?(String)
+
+      = f.label :name, '名前'
+      br
+      = f.text_field :name, autofocus: true, autocomplete: 'name', class: 'form-control'
+      br
+
+      = f.label :password, 'パスワード'
+      br
+      = f.password_field :password, autocomplete: 'password', class: 'form-control'
+      br
+
+      = f.label :password_confirmation, 'パスワード(確認用)'
+      br
+      = f.password_field :password_confirmation, autocomplete: 'password', class: 'form-control'
+      br
+
+      = f.submit '登録', class: 'btn btn-success btn-lg btn-block'
+      br
+
+  .col-xs-3

@@ -8,8 +8,11 @@
 
     = link_to '単語帳', learning_questions_path, class: 'btn btn-default btn-block'
     br
-    = link_to 'ランキング', users_ranking_path, class: 'btn btn-default btn-block'
+    = link_to 'ランキング', ranking_users_path, class: 'btn btn-default btn-block'
     br
     = link_to '単語メンテナンス', questions_path, class: 'btn btn-default btn-block'
+    br
+    = link_to 'ログアウト', session_path(@current_user), method: :delete, data: { confirm: '本当にログアウトしますか？' }, class: 'btn btn-default btn-block'
+    br
 
   .col-xs-3

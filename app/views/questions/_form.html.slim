@@ -3,3 +3,10 @@ br
 
 = f.text_field :description, placeholder: '説明を入力してください', class: 'form-control'
 br
+
+= f.fields_for :question_similars do |qs|
+  = qs.text_field :similar_word, placeholder: '類似語1つ目を入力してください', class: 'form-control'
+  br
+= f.fields_for :question_similars do |qs|
+  = qs.text_field :similar_word, placeholder: '類似語2つ目を入力してください', class: 'form-control'
+  br

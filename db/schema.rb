@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 2020_08_17_072448) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "password"
-    t.string "salt"
     t.integer "highest_rate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

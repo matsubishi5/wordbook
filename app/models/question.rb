@@ -1,5 +1,6 @@
 class Question < ApplicationRecord
   has_many :question_similars, dependent: :destroy
+  accepts_nested_attributes_for :question_similars
 
   def self.search(search)
     if search.present?

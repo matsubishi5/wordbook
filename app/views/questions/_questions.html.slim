@@ -8,6 +8,8 @@
           | 問題
         th.text-center
           | 説明
+        th.text-center
+          | 類似語
         th
         th
 
@@ -20,6 +22,10 @@
             = question.question
           td.text-center
             = question.description
+          td.text-center
+            - question.question_similars.each do |qs|
+              = qs.similar_word
+              | ,
           td.text-center
             = link_to '編集', edit_question_path(question), class: 'btn-sm btn-primary'
           td.text-center
