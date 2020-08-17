@@ -1,0 +1,15 @@
+.row
+  .col-xs-3
+
+  .col-xs-6
+    .page-header
+      h3
+        | 単語帳アプリ
+
+    = link_to '単語帳', learning_questions_path, class: 'btn btn-default btn-block'
+    br
+    = link_to 'ランキング', users_ranking_path, class: 'btn btn-default btn-block'
+    br
+    = link_to '単語メンテナンス', questions_path, class: 'btn btn-default btn-block'
+
+  .col-xs-3

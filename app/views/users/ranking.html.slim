@@ -1,0 +1,56 @@
+.row
+  .col-xs-3
+
+  .col-xs-6
+    .page-header
+      h3
+        | ユーザーランキング
+
+    / - if user_signed_in?
+    /   |  あなたの順位は
+    /   = @users.count
+    /   | 人中
+    /   strong
+    /     = current_user.my_rank(current_user)
+    /     | 位
+    /   | です
+
+    .table-responsive
+      table.table.table-bordered.table-hover
+        thead
+          tr
+            th.text-center
+              | 順位
+            th.text-center
+              | 名前
+            th.text-center
+              | 正解率
+
+        tbody
+          - @users.each.with_index(1) do |user, index|
+            tr
+              td.text-center
+                - case index when 1
+                  i.fas.fa-crown[style='color: gold;']
+                - when 2
+                  i.fas.fa-crown[style='color: silver;']
+                - when 3
+                  i.fas.fa-crown[style='color: #B08A1C;']
+                - else
+                  = index
+              td.text-center
+                - if user == current_user
+                  span style='color: red; font-weight: bold;'
+                    = user.name
+                - else
+                  = user.name
+              td.text-center
+                - if user == current_user
+                  span style='color: red; font-weight: bold;'
+                    = user.rate
+                    | %
+                - else
+                  = user.rate
+                  | %
+
+    = link_to 'メニューへ戻る', root_path, class: 'btn btn-default'
