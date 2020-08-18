@@ -14,14 +14,14 @@
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => 'flash_#{ name }' if msg.is_a?(String)
 
-    / - if user_signed_in?
-    /   |  あなたの順位は
-    /   = @users.count
-    /   | 人中
-    /   strong
-    /     = current_user.my_rank(current_user)
-    /     | 位
-    /   | です
+    - if @current_user
+      |  あなたの順位は
+      = @users.count
+      | 人中
+      strong
+        = @current_user.my_rank(@current_user)
+        | 位
+      | です
 
     .table-responsive
       table.table.table-bordered.table-hover
@@ -46,6 +46,7 @@
                   i.fas.fa-crown[style='color: #B08A1C;']
                 - else
                   = index
+                  | 位
               td.text-center
                 - if user == @current_user
                   span style='color: red; font-weight: bold;'
@@ -58,7 +59,7 @@
                     = user.highest_rate
                     | %
                 - else
-                  = user.rate
+                  = user.highest_rate
                   | %
 
     = link_to 'メニューへ戻る', root_path, class: 'btn btn-default'

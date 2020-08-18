@@ -62,3 +62,4 @@ gem 'html2slim'
 
 gem 'bootstrap-sass'
 gem 'jquery-rails'
+gem 'jquery-turbolinks'

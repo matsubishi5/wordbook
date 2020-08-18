@@ -17,22 +17,22 @@ ActiveRecord::Schema.define(version: 2020_08_17_072448) do
 
   create_table "question_similars", force: :cascade do |t|
     t.integer "question_id"
-    t.string "similar_word"
+    t.string "similar_word", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string "question"
-    t.text "description"
+    t.string "question", default: "", null: false
+    t.text "description", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "password"
-    t.integer "highest_rate"
+    t.string "name", default: "", null: false
+    t.string "password", default: "", null: false
+    t.integer "highest_rate", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

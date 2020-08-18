@@ -1,0 +1,39 @@
+.row
+  .col-xs-2
+  .col-xs-8
+
+    .page-header
+      h1
+        | 第#{@number}問 (全10問)
+
+
+    = form_with url: learning_questions_path, method: :get do |f|
+
+      - question.each do |q|
+        h3
+          | 問題 :
+          = q.description
+        br
+
+        h3
+          | 【下記から1つ選び、『回答する』ボタンを押してください】
+        br
+
+        p
+          = radio_button_tag :answer, '正解', true
+          = q.question
+
+        - q.question_similars.each do |qs|
+          p
+            = radio_button_tag :answer, '不正解'
+            = qs.similar_word
+
+          = hidden_field_tag :question_id, q.id
+
+
+      = f.submit '回答する', class: 'btn btn-info center-block'
+      br
+
+    = link_to 'メニューへ戻る', root_path, class: 'btn btn-default'
+
+  .col-xs-2

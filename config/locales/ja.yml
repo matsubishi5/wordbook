@@ -4,3 +4,9 @@ ja:
       user:
         name: ユーザー名
         password: パスワード
+      question:
+        question: 単語
+        description: 答え
+        rate: 最高正解率
+      question_similar:
+        similar_word: 類似語
