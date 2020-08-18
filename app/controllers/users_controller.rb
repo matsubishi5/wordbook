@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     unless params[:user][:password] == params[:user][:password_confirmation]
-      flash.now[:notice] = 'パスワードが確認用のものと一致しません。'
+      flash[:notice] = 'パスワードが確認用のものと一致しません。'
       render 'new'
       return
     end

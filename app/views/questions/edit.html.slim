@@ -8,7 +8,18 @@
 
     = form_with model: @question, url: question_path(@question), local: true do |f|
 
-      = render 'form', f: f
+      = f.label :question, '単語'
+      = f.text_field :question, placeholder: '単語を入力してください', class: 'form-control'
+      br
+
+      = f.label :question, '答え'
+      = f.text_area :description, placeholder: '答えを入力してください', class: 'form-control'
+      br
+
+      = f.label :question_similar, '類似語'
+      = f.fields_for :question_similars do |qs|
+        = qs.text_field :similar_word, placeholder: '類似語1つ目を入力してください', class: 'form-control'
+        br
 
       = f.submit '保存', class: 'btn btn-success btn-block'
       br

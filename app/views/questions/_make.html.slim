@@ -29,6 +29,7 @@
             = qs.similar_word
 
           = hidden_field_tag :question_id, q.id
+          = hidden_field_tag :question_ids, @already_asked.join(",")
 
 
       = f.submit '回答する', class: 'btn btn-info center-block'
@@ -37,3 +38,5 @@
     = link_to 'メニューへ戻る', root_path, class: 'btn btn-default'
 
   .col-xs-2
+
+= @already_asked

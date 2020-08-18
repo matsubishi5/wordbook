@@ -5,6 +5,7 @@ class Question < ApplicationRecord
   validates :question, presence: true, uniqueness: true
   validates :description, presence: true
 
+  # あいまい検索
   def self.search(search)
     if search.present?
       Question.where(['question LIKE ? OR description LIKE ?', "%#{ search }%", "%#{ search }%"])

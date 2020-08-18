@@ -29,4 +29,4 @@
           td.text-center
             = link_to '編集', edit_question_path(question), class: 'btn-sm btn-primary'
           td.text-center
-            = link_to '削除', question_path(question), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn-sm btn-danger'
+            = button_to '削除', question_path(question), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn-sm btn-danger'
