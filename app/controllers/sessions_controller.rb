@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
     end
   end
 
-  def destroy
+  def logout
     session.delete(:user_id)
     @current_user = nil
     redirect_to new_session_path
