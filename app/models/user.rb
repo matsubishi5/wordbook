@@ -8,13 +8,13 @@ class User < ApplicationRecord
   end
 
   # 自分の順位を計算
-  def my_rank(current_user)
+  def my_rank
     users = User.ranking
-    @my_rank = 0
+    my_rank = 0
     users.each do |user|
-      @my_rank += 1
-      break if user.id == current_user.id
+      my_rank += 1
+      break if user.id == self.id
     end
-    @my_rank
+    my_rank
   end
 end

@@ -46,7 +46,8 @@ class QuestionsController < ApplicationController
 		@already_asked = params[:question_ids].split(",") if params[:question_ids]
 		question_id = params[:question_id]
 		@already_asked.push(question_id.to_i)
-		@question = Question.where.not(id: @already_asked).order("RANDOM()").limit(1)
+		@current_question = Question.where.not(id: @already_asked).order("RANDOM()").first
+		@another_question = Question.where.not(id: @current_question.id).order("RANDOM()").limit(2) if @current_question
 
 		# 正解数と不正解数をセッションで管理
 		session[:correct] += 1 if params[:answer] == '正解'
@@ -56,7 +57,7 @@ class QuestionsController < ApplicationController
 		# 最終問題回答後の処理
 		if @number == 11
 			rate = (session[:correct] * 100) / 10 # 正解率を計算
-			rank = @current_user.my_rank(@current_user) # 自分の順位を計算
+			rank = @current_user.my_rank # 自分の順位を計算
 			# 最高正解率を更新
 			if rate > @current_user.highest_rate
 				@current_user.highest_rate = rate
@@ -68,7 +69,8 @@ class QuestionsController < ApplicationController
 			session[:correct] = nil
 			session[:incorrect] = nil
 			@users = User.ranking
-			redirect_to ranking_users_path
+			# redirect_to ranking_users_path
+			render 'users/ranking'
 		end
 	end
 

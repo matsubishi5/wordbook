@@ -1,1 +1,1 @@
-$(".target").html("<%= escape_javascript(render 'make', question: @question) %>");
+$(".target").html("<%= j(render 'make', current_question: @current_question, another_question: @another_question) %>");
